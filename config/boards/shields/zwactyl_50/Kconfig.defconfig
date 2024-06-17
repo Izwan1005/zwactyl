@@ -1,0 +1,23 @@
+if SHIELD_ZWACTYL_50_LEFT
+
+    config ZMK_KEYBOARD_NAME
+        default "zwactyl_50(Left)"
+
+    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+        default y
+
+endif
+
+if SHIELD_ZWACTYL_50_RIGHT
+
+    config ZMK_KEYBOARD_NAME
+        default "zwactyl_50(Right)"
+
+endif
+
+if SHIELD_ZWACTYL_50_LEFT || SHIELD_ZWACTYL_50_RIGHT
+
+    config ZMK_SPLIT
+        default y
+
+endif
