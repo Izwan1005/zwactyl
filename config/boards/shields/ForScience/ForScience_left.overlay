@@ -1,4 +1,4 @@
-#include "zwactyl_50.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include "ForScience.dtsi" // Notice that the main dtsi files are included in the overlay.
 
 &kscan0 {
     col-gpios

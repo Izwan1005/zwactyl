@@ -1,5 +1,0 @@
-config SHIELD_ZWACTYL_50_LEFT
-    def_bool $(shields_list_contains,zwactyl_50_left)
-
-config SHIELD_ZWACTYL_50_RIGHT
-    def_bool $(shields_list_contains,zwactyl_50_right)

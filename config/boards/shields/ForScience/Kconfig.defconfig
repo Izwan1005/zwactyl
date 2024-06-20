@@ -1,21 +1,21 @@
-if SHIELD_ZWACTYL_50_LEFT
+if SHIELD_FORSCIENCE_LEFT
 
     config ZMK_KEYBOARD_NAME
-        default "zwactyl_50(Left)"
+        default "ForScience(Left)"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
 
 endif
 
-if SHIELD_ZWACTYL_50_RIGHT
+if SHIELD_FORSCIENCE_RIGHT
 
     config ZMK_KEYBOARD_NAME
-        default "zwactyl_50(Right)"
+        default "ForScience(Right)"
 
 endif
 
-if SHIELD_ZWACTYL_50_LEFT || SHIELD_ZWACTYL_50_RIGHT
+if SHIELD_FORSCIENCE_LEFT || SHIELD_FORSCIENCE_RIGHT
 
     config ZMK_SPLIT
         default y
