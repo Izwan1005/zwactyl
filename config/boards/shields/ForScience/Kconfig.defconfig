@@ -1,7 +1,7 @@
 if SHIELD_FORSCIENCE_LEFT
 
     config ZMK_KEYBOARD_NAME
-        default "ForScience(Left)"
+        default "ForScience"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
