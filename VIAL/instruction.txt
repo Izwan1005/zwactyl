@@ -1,0 +1,2 @@
+qmk flash -kb zwactyl_50_staggered -km vial -bl uf2-split-left
+qmk flash -kb zwactyl_50_staggered -km vial -bl uf2-split-right
