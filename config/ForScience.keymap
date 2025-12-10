@@ -793,7 +793,7 @@
 
         delete_line_combo {
             bindings = <&delete_line>;
-            key-positions = <30 31>;
+            key-positions = <42 41>;
             layers = <0>;
         };
 
@@ -817,7 +817,7 @@
 
         NPP_hideline {
             bindings = <&kp LA(H)>;
-            key-positions = <1 0>;
+            key-positions = <1 10>;
         };
 
         NE_mins {
@@ -864,19 +864,19 @@
 
         R_thumb_date {
             bindings = <&kp F5>;
-            key-positions = <33 25>;
+            key-positions = <34 33>;
             layers = <0>;
         };
 
         L_thumb_GUI {
             bindings = <&kp LEFT_GUI>;
-            key-positions = <24 30>;
+            key-positions = <24 41>;
             layers = <0>;
         };
 
         RESET {
             bindings = <&bootloader>;
-            key-positions = <4 14 24 31>;
+            key-positions = <4 14 24>;
             layers = <0>;
         };
 
@@ -894,14 +894,14 @@
 
         VSC_comment {
             bindings = <&kp LC(SLASH)>;
-            key-positions = <11 12>;
+            key-positions = <1 2>;
             layers = <0>;
             timeout-ms = <100>;
         };
 
         LOCK_WINDOW {
             bindings = <&kp LG(L)>;
-            key-positions = <19 29>;
+            key-positions = <29 39>;
         };
 
         CTRL_ALT {
