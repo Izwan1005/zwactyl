@@ -9,15 +9,6 @@
 #define ADJ 3
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        reset {
-            bindings = <&bootloader>;
-            key-positions = <4 14 24>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
