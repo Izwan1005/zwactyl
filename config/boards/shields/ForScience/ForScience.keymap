@@ -1,19 +1,919 @@
+// Copyright (c) 2022 The ZMK Contributors
+// SPDX-License-Identifier: MIT
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/mouse.h>
 
-#define DEFAULT 0
-#define LWR 1
-#define RSE 2
-#define ADJ 3
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1100  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 15    // default: 10
+
+&msc {
+    x-input-code = <INPUT_REL_HWHEEL>;
+    y-input-code = <INPUT_REL_WHEEL>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <3>;
+};
+
+&mmv {
+    x-input-code = <INPUT_REL_X>;
+    y-input-code = <INPUT_REL_Y>;
+    time-to-max-speed-ms = <300>;
+    acceleration-exponent = <1>;
+};
+
+&lt { tapping-term-ms = <170>; };
 
 / {
+    macros {
+        norsk_AO: norsk_AO {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_2 &kp KP_NUMBER_9>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "NORSK_AO";
+        };
+
+        norsk_AO_cap: norsk_AO_cap {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_9 &kp KP_NUMBER_7>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "NORSK_AO_CAP";
+        };
+
+        delete_line: delete_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END &kp LS(HOME) &kp BACKSPACE>;
+            label = "DELETE_LINE";
+        };
+
+        norsk_AE: norsk_AE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp KP_NUMBER_0>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "NORSK_AE";
+        };
+
+        norsk_AE_CAP: norsk_AE_CAP {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_9 &kp KP_NUMBER_8>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "NORSK_AE_CAP";
+        };
+
+        norsk_OE: norsk_OE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_8>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "NORSK_OE";
+        };
+
+        norsk_OE_CAP: norsk_OE_CAP {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_1 &kp KP_NUMBER_6>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "NORSK_OE_CAP";
+        };
+
+        degree: degree {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_7 &kp KP_NUMBER_6>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "DEGREE";
+        };
+
+        par_mid: par_mid {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
+            label = "PAR_MID";
+        };
+
+        brk_mid: brk_mid {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
+            label = "BRK_MID";
+        };
+
+        brc_mid: brc_mid {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;
+            label = "BRC_MID";
+        };
+
+        email: email {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp I &kp Z &kp W &kp A &kp N &kp DOT &kp P &kp E &kp N &kp G &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+            label = "EMAIL";
+        };
+
+        IKM_ADMIN: IKM_ADMIN {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp DOT &kp BSLH &kp A &kp D &kp M &kp I &kp N &kp I &kp S &kp T &kp R &kp A &kp T &kp O &kp R &kp TAB>;
+
+            label = "IKM_ADMIN";
+        };
+
+        IKM_PC: IKM_PC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp LS(A) &kp D &kp A &kp M &kp A &kp Y &kp A &kp M &kp LEFT_BRACE &kp N2 &kp N1 &kp N2 &kp N2 &kp RBRC &kp EXCL>;
+
+            label = "IKM_PC";
+        };
+
+        INS_FIG: INS_FIG {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LC(LA(R))>,
+                <&macro_wait_time 200>,
+                <&kp F>,
+                <&macro_wait_time 50>,
+                <&kp I>,
+                <&macro_wait_time 50>,
+                <&kp G>,
+                <&macro_wait_time 50>,
+                <&kp TAB>,
+                <&macro_wait_time 300>,
+                <&kp DOWN>,
+                <&macro_wait_time 150>,
+                <&kp DOWN_ARROW>,
+                <&macro_wait_time 150>,
+                <&kp TAB &kp TAB>;
+
+            label = "INS_FIG";
+        };
+
+        INS_TAB: INS_TAB {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LC(LA(R))>,
+                <&macro_wait_time 200>,
+                <&kp T>,
+                <&macro_wait_time 50>,
+                <&kp A>,
+                <&macro_wait_time 50>,
+                <&kp B>,
+                <&macro_wait_time 50>,
+                <&kp TAB>,
+                <&macro_wait_time 300>,
+                <&kp DOWN>,
+                <&macro_wait_time 150>,
+                <&kp DOWN_ARROW>,
+                <&macro_wait_time 150>,
+                <&kp TAB &kp TAB>;
+
+            label = "INS_TAB";
+        };
+
+        INS_REF: INS_REF {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LC(LA(R))>,
+                <&macro_wait_time 200>,
+                <&kp N>,
+                <&macro_wait_time 50>,
+                <&kp U>,
+                <&macro_wait_time 50>,
+                <&kp M>,
+                <&macro_wait_time 50>,
+                <&kp TAB>,
+                <&macro_wait_time 300>,
+                <&kp DOWN>,
+                <&macro_wait_time 150>,
+                <&kp DOWN_ARROW>,
+                <&macro_wait_time 150>,
+                <&kp DOWN_ARROW>,
+                <&macro_wait_time 150>,
+                <&kp TAB &kp TAB &kp TAB>;
+
+            label = "INS_REF";
+        };
+
+        INS_CAP: INS_CAP {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_ALT &kp S &kp P>;
+            label = "INS_CAP";
+            wait-ms = <150>;
+        };
+
+        NOR_ID: NOR_ID {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp N0 &kp N1 &kp N0 &kp N9 &kp N9 &kp N3 &kp N2 &kp N3 &kp N7 &kp N2 &kp N4>;
+            label = "NOR_ID";
+        };
+
+        INS_COL: INS_COL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&none &kp LC(SPACE)>,
+                <&macro_wait_time 300>,
+                <&kp LC(KP_PLUS)>;
+
+            label = "INS_COL";
+        };
+
+        INS_ROW: INS_ROW {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&none &kp LS(SPACE)>,
+                <&macro_wait_time 300>,
+                <&kp LC(KP_PLUS)>;
+
+            label = "INS_ROW";
+        };
+
+        plusminus: plusminus {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_7 &kp KP_NUMBER_7>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "PLUSMINUS";
+        };
+
+        APDL_nodeNumber: APDL_nodeNumber {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp C>,
+                <&macro_release>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp DOWN &kp DOWN &kp DOWN &kp ENTER &kp TAB &kp TAB &kp TAB &kp TAB &kp SPACE &kp ENTER>;
+
+            label = "APDL_NODENUMBER";
+            wait-ms = <200>;
+        };
+
+        INS_LINK: INS_LINK {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LEFT_ALT>,
+                <&macro_wait_time 200>,
+                <&kp N>,
+                <&macro_wait_time 50>,
+                <&kp I>,
+                <&macro_wait_time 50>,
+                <&kp I>;
+
+            label = "INS_LINK";
+        };
+
+        ACROBAT_accept: ACROBAT_accept {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp F13 &kp DOWN &kp DOWN &kp DOWN &kp RIGHT_ARROW &kp DOWN &kp ENTER>;
+            label = "ACROBAT_ACCEPT";
+            wait-ms = <200>;
+        };
+
+        ACROBAT_complete: ACROBAT_complete {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp F13 &kp DOWN &kp DOWN &kp DOWN &kp RIGHT_ARROW &kp DOWN &kp DOWN_ARROW &kp DOWN &kp ENTER>;
+            wait-ms = <200>;
+        };
+
+        WIN_new_txt: WIN_new_txt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp K_APP &kp W &kp T>;
+            label = "WIN_NEW_TXT";
+            wait-ms = <200>;
+        };
+
+        INS_HIGHLIGHT: INS_HIGHLIGHT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LEFT_ALT>,
+                <&macro_wait_time 150>,
+                <&kp H>,
+                <&macro_wait_time 150>,
+                <&kp I>,
+                <&macro_wait_time 150>,
+                <&kp ENTER>;
+
+            label = "INS_HIGHLIGHT";
+        };
+
+        sel_line: sel_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END &kp LS(HOME)>;
+            label = "SEL_LINE";
+        };
+
+        SHAPR3D: SHAPR3D {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&kp E &kp Z &kp L &kp A &kp N &kp D &kp DOT &kp S &kp H &kp A &kp P &kp R &kp N3 &kp D &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M &kp TAB &kp LS(L) &kp O &kp G &kp O &kp U &kp T>,
+                <&macro_wait_time 100>,
+                <&macro_tap>,
+                <&kp N2 &kp N0 &kp N2 &kp N3 &kp N2 &kp N0>;
+
+            label = "SHAPR3D";
+            wait-ms = <100>;
+        };
+
+        define_method: define_method {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&kp D &kp E &kp F &kp SPACE &kp UNDER &kp M &kp E &kp T &kp H &kp O &kp D &kp SPACE &kp LPAR &kp S &kp E &kp L &kp F &kp RPAR &kp COLON &kp RET>,
+                <&macro_tap>,
+                <&kp DQT &kp DQT &kp DQT &kp RET>,
+                <&macro_tap>,
+                <&kp D &kp O &kp C &kp S &kp T &kp R &kp I &kp N &kp G &kp RET>,
+                <&macro_tap>,
+                <&kp DQT &kp DQT &kp DQT &kp RET>,
+                <&macro_tap>,
+                <&kp R &kp E &kp T &kp U &kp R &kp N &kp SPACE &kp LPAR &kp S &kp E &kp L &kp F &kp RPAR>,
+                <&macro_press>,
+                <&macro_press>;
+
+            label = "DEFINE_METHOD";
+        };
+
+        select_word: select_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(RIGHT) &kp LC(LS(LEFT))>;
+
+            label = "SELECT_WORD";
+        };
+
+        merge_cell_words: merge_cell_words {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&kp K_APP>,
+                <&macro_wait_time 150>,
+                <&macro_tap>,
+                <&kp M &kp ENTER>;
+
+            label = "MERGE_CELL_WORDS";
+        };
+
+        sigma_stress: sigma_stress {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_1 &kp KP_NUMBER_5>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "SIGMA_STRESS";
+        };
+
+        INS_FONTCOLOR: INS_FONTCOLOR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LEFT_ALT>,
+                <&macro_wait_time 150>,
+                <&kp H>,
+                <&macro_wait_time 150>,
+                <&kp F>,
+                <&macro_wait_time 150>,
+                <&kp C>,
+                <&macro_wait_time 150>,
+                <&kp DOWN &kp DOWN &kp DOWN &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+
+            label = "INS_FONTCOLOR";
+        };
+
+        PPT_bring_front: PPT_bring_front {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp K_APP &kp R &kp RIGHT &kp R>;
+            label = "PPT_BRING_FRONT";
+            wait-ms = <200>;
+        };
+
+        EXCEL_resize_column: EXCEL_resize_column {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LEFT_ALT>,
+                <&macro_wait_time 150>,
+                <&kp H>,
+                <&macro_wait_time 150>,
+                <&kp O>,
+                <&macro_wait_time 150>,
+                <&kp I>;
+
+            label = "EXCEL_RESIZE_COLUMN";
+        };
+
+        exit_cmd: exit_cmd {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&kp E &kp X &kp I &kp T>,
+                <&macro_wait_time 180>,
+                <&kp RET>;
+
+            label = "EXIT_CMD";
+        };
+
+        NDIST: NDIST {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N &kp D &kp I &kp S &kp T &kp COMMA>;
+            label = "NDIST";
+            tap-ms = <50>;
+        };
+
+        S7_adobe_accept: S7_adobe_accept {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&mkp MB2>,
+                <&macro_wait_time 200>,
+                <&kp E>,
+                <&macro_wait_time 200>,
+                <&kp A>;
+
+            label = "S7_ADOBE_ACCEPT";
+        };
+
+        S7_adobe_complete: S7_adobe_complete {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&mkp MB2>,
+                <&macro_wait_time 200>,
+                <&kp E>,
+                <&macro_wait_time 200>,
+                <&kp M>;
+
+            label = "S7_ADOBE_COMPLETE";
+        };
+
+        EXCEL_trace_dependant: EXCEL_trace_dependant {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LEFT_ALT>,
+                <&macro_wait_time 150>,
+                <&kp A &kp H>,
+                <&macro_wait_time 150>,
+                <&kp M>,
+                <&macro_wait_time 150>,
+                <&kp D>;
+
+            label = "EXCEL_TRACE_DEPENDANT";
+        };
+
+        EXCEL_remove_arrow: EXCEL_remove_arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            tap-ms = <150>;
+            bindings =
+                <&kp LEFT_ALT>,
+                <&macro_wait_time 150>,
+                <&kp A &kp H>,
+                <&macro_wait_time 150>,
+                <&kp M>,
+                <&macro_wait_time 150>,
+                <&kp A>;
+
+            label = "EXCEL_REMOVE_ARROW";
+        };
+    };
+
+    behaviors {
+        caps_esc: caps_esc {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAPS_ESC";
+            #binding-cells = <0>;
+            bindings = <&kp ESCAPE>, <&kp CAPS>;
+
+            tapping-term-ms = <300>;
+        };
+
+        ht_tap: HT_TAP {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <160>;
+            flavor = "hold-preferred";
+        };
+
+        AO: AO {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AO";
+            #binding-cells = <0>;
+            bindings = <&norsk_AO>, <&norsk_AO_cap>;
+
+            tapping-term-ms = <300>;
+        };
+
+        QUOT_DQUO: QUOT_DQUO {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUOT_DQUO";
+            #binding-cells = <0>;
+            bindings = <&kp SINGLE_QUOTE>, <&kp DOUBLE_QUOTES>;
+
+            tapping-term-ms = <300>;
+        };
+
+        AE: AE {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AE";
+            #binding-cells = <0>;
+            bindings = <&norsk_AE>, <&norsk_AE_CAP>;
+
+            tapping-term-ms = <300>;
+        };
+
+        OE: OE {
+            compatible = "zmk,behavior-tap-dance";
+            label = "OE";
+            #binding-cells = <0>;
+            bindings = <&norsk_OE>, <&norsk_OE_CAP>;
+
+            tapping-term-ms = <300>;
+        };
+
+        SHFT_SPC: SHFT_SPC {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SHFT_SPC";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <100>;
+            hold-trigger-key-positions = <32>;
+        };
+
+        UND_MINS: UND_MINS {
+            compatible = "zmk,behavior-tap-dance";
+            label = "UND_MINS";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&kp UNDER>;
+
+            tapping-term-ms = <300>;
+        };
+
+        AMP_CURL: AMP_CURL {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AMP_CURL";
+            #binding-cells = <0>;
+            bindings = <&kp AMPERSAND>, <&kp TILDE>;
+
+            tapping-term-ms = <300>;
+        };
+
+        SUB_SUP: SUB_SUP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SUB_SUP";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp LC(LS(EQUAL))>, <&kp LC(LS(MINUS))>;
+        };
+
+        EXC_G: EXC_G {
+            compatible = "zmk,behavior-tap-dance";
+            label = "EXC_G";
+            #binding-cells = <0>;
+            bindings = <&kp G>, <&kp EXCLAMATION>;
+
+            tapping-term-ms = <200>;
+        };
+
+        QUE_J: QUE_J {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUE_J";
+            #binding-cells = <0>;
+            bindings = <&kp J>, <&kp QUESTION>;
+
+            tapping-term-ms = <165>;
+        };
+
+        ht_hold: ht_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_HOLD";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            flavor = "hold-preferred";
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+        };
+
+        B_USB: B_USB {
+            compatible = "zmk,behavior-tap-dance";
+            label = "B_USB";
+            #binding-cells = <0>;
+            bindings = <&kp B>, <&out OUT_USB>;
+
+            tapping-term-ms = <165>;
+        };
+
+        layer_tap: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+        };
+
+        V_BLE: V_BLE {
+            compatible = "zmk,behavior-tap-dance";
+            label = "V_BLE";
+            #binding-cells = <0>;
+            bindings = <&kp V>, <&out OUT_USB>;
+
+            tapping-term-ms = <165>;
+        };
+
+        non_breaking: non_breaking {
+            compatible = "zmk,behavior-tap-dance";
+            label = "NON_BREAKING";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(SPACE))>, <&kp LS(LC(KP_SUBTRACT))>;
+
+            tapping-term-ms = <300>;
+        };
+
+        CTRL_at: CTRL_at {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CTRL_AT";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+        };
+
+        SHFT_ID: SHFT_ID {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SHFT_ID";
+            bindings = <&kp>, <&NOR_ID>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+        };
+
+        cap_I: cap_I {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAP_I";
+            #binding-cells = <0>;
+            bindings = <&kp I>, <&kp LS(I)>;
+
+            tapping-term-ms = <200>;
+        };
+
+        DOT_COMM: DOT_COMM {
+            compatible = "zmk,behavior-tap-dance";
+            label = "DOT_COMM";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp DOT>, <&kp COMMA>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
-        reset {
+        VSC_duplicate {
+            bindings = <&kp LA(LS(DOWN_ARROW))>;
+            key-positions = <1 2>;
+            layers = <0>;
+        };
+
+        RIGHT_ENT {
+            bindings = <&kp ENTER>;
+            key-positions = <27 28>;
+            layers = <0 2>;
+        };
+
+        delete_line_combo {
+            bindings = <&delete_line>;
+            key-positions = <30 31>;
+            layers = <0>;
+        };
+
+        bootloader_left {
             bindings = <&bootloader>;
             key-positions = <4 14 24>;
+            layers = <0>;
+        };
+
+        QUES {
+            bindings = <&kp QUESTION>;
+            key-positions = <15 16>;
+            layers = <0>;
+        };
+
+        EXCLAM {
+            bindings = <&kp EXCLAMATION>;
+            key-positions = <14 13>;
+            layers = <0>;
+        };
+
+        NPP_hideline {
+            bindings = <&kp LA(H)>;
+            key-positions = <1 0>;
+        };
+
+        NE_mins {
+            bindings = <&kp MINUS>;
+            key-positions = <16 17>;
+            layers = <0>;
+        };
+
+        EI_unds {
+            bindings = <&kp UNDER>;
+            key-positions = <17 18>;
+            layers = <0>;
+        };
+
+        VB_OF-hide {
+            bindings = <&kp LC(H)>;
+            key-positions = <23 24>;
+            layers = <0>;
+        };
+
+        PG_OF-elevation {
+            bindings = <&kp LC(E)>;
+            key-positions = <4 3>;
+            layers = <0>;
+        };
+
+        duplicateLine {
+            bindings = <&kp LC(LA(UP_ARROW))>;
+            key-positions = <0 4>;
+            layers = <0>;
+        };
+
+        UY_dquo {
+            bindings = <&kp KP_PLUS>;
+            key-positions = <7 6>;
+            layers = <0>;
+        };
+
+        UY_equal {
+            bindings = <&kp EQUAL>;
+            key-positions = <7 8>;
+            layers = <0>;
+        };
+
+        R_thumb_date {
+            bindings = <&kp F5>;
+            key-positions = <33 25>;
+            layers = <0>;
+        };
+
+        L_thumb_GUI {
+            bindings = <&kp LEFT_GUI>;
+            key-positions = <24 30>;
+            layers = <0>;
+        };
+
+        RESET {
+            bindings = <&bootloader>;
+            key-positions = <4 14 24 31>;
+            layers = <0>;
+        };
+
+        SOFT_OFF {
+            bindings = <&soft_off>;
+            key-positions = <0 9>;
+            layers = <0>;
+        };
+
+        Right_E {
+            bindings = <&kp E>;
+            key-positions = <3 2>;
+            layers = <0>;
+        };
+
+        VSC_comment {
+            bindings = <&kp LC(SLASH)>;
+            key-positions = <11 12>;
+            layers = <0>;
+            timeout-ms = <100>;
+        };
+
+        LOCK_WINDOW {
+            bindings = <&kp LG(L)>;
+            key-positions = <19 29>;
+        };
+
+        CTRL_ALT {
+            bindings = <&kp LC(LEFT_ALT)>;
+            key-positions = <21 22>;
+        };
+
+        VSC_execute {
+            bindings = <&kp LA(ENTER)>;
+            key-positions = <26 27>;
         };
     };
 
@@ -70,4 +970,5 @@
             >;
         };
     };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 };
