@@ -593,6 +593,204 @@
 
             label = "EXCEL_REMOVE_ARROW";
         };
+    
+    behaviors {
+        caps_esc: caps_esc {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAPS_ESC";
+            #binding-cells = <0>;
+            bindings = <&kp ESCAPE>, <&kp CAPS>;
+
+            tapping-term-ms = <300>;
+        };
+
+        ht_tap: HT_TAP {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <160>;
+            flavor = "hold-preferred";
+        };
+
+        AO: AO {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AO";
+            #binding-cells = <0>;
+            bindings = <&norsk_AO>, <&norsk_AO_cap>;
+
+            tapping-term-ms = <300>;
+        };
+
+        QUOT_DQUO: QUOT_DQUO {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUOT_DQUO";
+            #binding-cells = <0>;
+            bindings = <&kp SINGLE_QUOTE>, <&kp DOUBLE_QUOTES>;
+
+            tapping-term-ms = <300>;
+        };
+
+        AE: AE {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AE";
+            #binding-cells = <0>;
+            bindings = <&norsk_AE>, <&norsk_AE_CAP>;
+
+            tapping-term-ms = <300>;
+        };
+
+        OE: OE {
+            compatible = "zmk,behavior-tap-dance";
+            label = "OE";
+            #binding-cells = <0>;
+            bindings = <&norsk_OE>, <&norsk_OE_CAP>;
+
+            tapping-term-ms = <300>;
+        };
+
+        SHFT_SPC: SHFT_SPC {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SHFT_SPC";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <100>;
+            hold-trigger-key-positions = <32>;
+        };
+
+        UND_MINS: UND_MINS {
+            compatible = "zmk,behavior-tap-dance";
+            label = "UND_MINS";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&kp UNDER>;
+
+            tapping-term-ms = <300>;
+        };
+
+        AMP_CURL: AMP_CURL {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AMP_CURL";
+            #binding-cells = <0>;
+            bindings = <&kp AMPERSAND>, <&kp TILDE>;
+
+            tapping-term-ms = <300>;
+        };
+
+        SUB_SUP: SUB_SUP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SUB_SUP";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp LC(LS(EQUAL))>, <&kp LC(LS(MINUS))>;
+        };
+
+        EXC_G: EXC_G {
+            compatible = "zmk,behavior-tap-dance";
+            label = "EXC_G";
+            #binding-cells = <0>;
+            bindings = <&kp G>, <&kp EXCLAMATION>;
+
+            tapping-term-ms = <200>;
+        };
+
+        QUE_J: QUE_J {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUE_J";
+            #binding-cells = <0>;
+            bindings = <&kp J>, <&kp QUESTION>;
+
+            tapping-term-ms = <165>;
+        };
+
+        ht_hold: ht_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_HOLD";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            flavor = "hold-preferred";
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+        };
+
+        B_USB: B_USB {
+            compatible = "zmk,behavior-tap-dance";
+            label = "B_USB";
+            #binding-cells = <0>;
+            bindings = <&kp B>, <&out OUT_USB>;
+
+            tapping-term-ms = <165>;
+        };
+
+        layer_tap: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+        };
+
+        V_BLE: V_BLE {
+            compatible = "zmk,behavior-tap-dance";
+            label = "V_BLE";
+            #binding-cells = <0>;
+            bindings = <&kp V>, <&out OUT_USB>;
+
+            tapping-term-ms = <165>;
+        };
+
+        non_breaking: non_breaking {
+            compatible = "zmk,behavior-tap-dance";
+            label = "NON_BREAKING";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(SPACE))>, <&kp LS(LC(KP_SUBTRACT))>;
+
+            tapping-term-ms = <300>;
+        };
+
+        CTRL_at: CTRL_at {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CTRL_AT";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+        };
+
+        SHFT_ID: SHFT_ID {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SHFT_ID";
+            bindings = <&kp>, <&NOR_ID>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+        };
+
+        cap_I: cap_I {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAP_I";
+            #binding-cells = <0>;
+            bindings = <&kp I>, <&kp LS(I)>;
+
+            tapping-term-ms = <200>;
+        };
+
+        DOT_COMM: DOT_COMM {
+            compatible = "zmk,behavior-tap-dance";
+            label = "DOT_COMM";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp DOT>, <&kp COMMA>;
+        };
+    };
+
     };
 
     keymap {
