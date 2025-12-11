@@ -36,9 +36,139 @@
     combos {
         compatible = "zmk,combos";
 
-        reset {
+        VSC_duplicate {
+            bindings = <&kp LA(LS(DOWN_ARROW))>;
+            key-positions = <1 2>;
+            layers = <0>;
+        };
+
+        RIGHT_ENT {
+            bindings = <&kp ENTER>;
+            key-positions = <27 28>;
+            layers = <0 2>;
+        };
+
+        delete_line_combo {
+            bindings = <&delete_line>;
+            key-positions = <30 31>;
+            layers = <0>;
+        };
+
+        bootloader_left {
             bindings = <&bootloader>;
             key-positions = <4 14 24>;
+            layers = <0>;
+        };
+
+        QUES {
+            bindings = <&kp QUESTION>;
+            key-positions = <15 16>;
+            layers = <0>;
+        };
+
+        EXCLAM {
+            bindings = <&kp EXCLAMATION>;
+            key-positions = <14 13>;
+            layers = <0>;
+        };
+
+        NPP_hideline {
+            bindings = <&kp LA(H)>;
+            key-positions = <1 0>;
+        };
+
+        NE_mins {
+            bindings = <&kp MINUS>;
+            key-positions = <16 17>;
+            layers = <0>;
+        };
+
+        EI_unds {
+            bindings = <&kp UNDER>;
+            key-positions = <17 18>;
+            layers = <0>;
+        };
+
+        VB_OF-hide {
+            bindings = <&kp LC(H)>;
+            key-positions = <23 24>;
+            layers = <0>;
+        };
+
+        PG_OF-elevation {
+            bindings = <&kp LC(E)>;
+            key-positions = <4 3>;
+            layers = <0>;
+        };
+
+        duplicateLine {
+            bindings = <&kp LC(LA(UP_ARROW))>;
+            key-positions = <0 4>;
+            layers = <0>;
+        };
+
+        UY_dquo {
+            bindings = <&kp KP_PLUS>;
+            key-positions = <7 6>;
+            layers = <0>;
+        };
+
+        UY_equal {
+            bindings = <&kp EQUAL>;
+            key-positions = <7 8>;
+            layers = <0>;
+        };
+
+        R_thumb_date {
+            bindings = <&kp F5>;
+            key-positions = <33 25>;
+            layers = <0>;
+        };
+
+        L_thumb_GUI {
+            bindings = <&kp LEFT_GUI>;
+            key-positions = <24 30>;
+            layers = <0>;
+        };
+
+        RESET {
+            bindings = <&bootloader>;
+            key-positions = <4 14 24 31>;
+            layers = <0>;
+        };
+
+        SOFT_OFF {
+            bindings = <&soft_off>;
+            key-positions = <0 9>;
+            layers = <0>;
+        };
+
+        Right_E {
+            bindings = <&kp E>;
+            key-positions = <3 2>;
+            layers = <0>;
+        };
+
+        VSC_comment {
+            bindings = <&kp LC(SLASH)>;
+            key-positions = <11 12>;
+            layers = <0>;
+            timeout-ms = <100>;
+        };
+
+        LOCK_WINDOW {
+            bindings = <&kp LG(L)>;
+            key-positions = <19 29>;
+        };
+
+        CTRL_ALT {
+            bindings = <&kp LC(LEFT_ALT)>;
+            key-positions = <21 22>;
+        };
+
+        VSC_execute {
+            bindings = <&kp LA(ENTER)>;
+            key-positions = <26 27>;
         };
     };
 
@@ -788,145 +918,6 @@
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             bindings = <&kp DOT>, <&kp COMMA>;
-        };
-    };
-
-    combos {
-        compatible = "zmk,combos";
-
-        VSC_duplicate {
-            bindings = <&kp LA(LS(DOWN_ARROW))>;
-            key-positions = <1 2>;
-            layers = <0>;
-        };
-
-        RIGHT_ENT {
-            bindings = <&kp ENTER>;
-            key-positions = <27 28>;
-            layers = <0 2>;
-        };
-
-        delete_line_combo {
-            bindings = <&delete_line>;
-            key-positions = <30 31>;
-            layers = <0>;
-        };
-
-        bootloader_left {
-            bindings = <&bootloader>;
-            key-positions = <4 14 24>;
-            layers = <0>;
-        };
-
-        QUES {
-            bindings = <&kp QUESTION>;
-            key-positions = <15 16>;
-            layers = <0>;
-        };
-
-        EXCLAM {
-            bindings = <&kp EXCLAMATION>;
-            key-positions = <14 13>;
-            layers = <0>;
-        };
-
-        NPP_hideline {
-            bindings = <&kp LA(H)>;
-            key-positions = <1 0>;
-        };
-
-        NE_mins {
-            bindings = <&kp MINUS>;
-            key-positions = <16 17>;
-            layers = <0>;
-        };
-
-        EI_unds {
-            bindings = <&kp UNDER>;
-            key-positions = <17 18>;
-            layers = <0>;
-        };
-
-        VB_OF-hide {
-            bindings = <&kp LC(H)>;
-            key-positions = <23 24>;
-            layers = <0>;
-        };
-
-        PG_OF-elevation {
-            bindings = <&kp LC(E)>;
-            key-positions = <4 3>;
-            layers = <0>;
-        };
-
-        duplicateLine {
-            bindings = <&kp LC(LA(UP_ARROW))>;
-            key-positions = <0 4>;
-            layers = <0>;
-        };
-
-        UY_dquo {
-            bindings = <&kp KP_PLUS>;
-            key-positions = <7 6>;
-            layers = <0>;
-        };
-
-        UY_equal {
-            bindings = <&kp EQUAL>;
-            key-positions = <7 8>;
-            layers = <0>;
-        };
-
-        R_thumb_date {
-            bindings = <&kp F5>;
-            key-positions = <33 25>;
-            layers = <0>;
-        };
-
-        L_thumb_GUI {
-            bindings = <&kp LEFT_GUI>;
-            key-positions = <24 30>;
-            layers = <0>;
-        };
-
-        RESET {
-            bindings = <&bootloader>;
-            key-positions = <4 14 24 31>;
-            layers = <0>;
-        };
-
-        SOFT_OFF {
-            bindings = <&soft_off>;
-            key-positions = <0 9>;
-            layers = <0>;
-        };
-
-        Right_E {
-            bindings = <&kp E>;
-            key-positions = <3 2>;
-            layers = <0>;
-        };
-
-        VSC_comment {
-            bindings = <&kp LC(SLASH)>;
-            key-positions = <11 12>;
-            layers = <0>;
-            timeout-ms = <100>;
-        };
-
-        LOCK_WINDOW {
-            bindings = <&kp LG(L)>;
-            key-positions = <19 29>;
-        };
-
-        CTRL_ALT {
-            bindings = <&kp LC(LEFT_ALT)>;
-            key-positions = <21 22>;
-        };
-
-        VSC_execute {
-            bindings = <&kp LA(ENTER)>;
-            key-positions = <26 27>;
         };
     };
 
