@@ -4,5 +4,5 @@ config SHIELD_FORSCIENCE_LEFT
 config SHIELD_FORSCIENCE_RIGHT
     def_bool $(shields_list_contains,ForScience_right)
 
-config SHIELD_CRADIO_DONGLE
-    def_bool $(shields_list_contains,cradio_dongle)
+config SHIELD_FORSCIENCE_DONGLE
+    def_bool $(shields_list_contains,ForScience_dongle)
