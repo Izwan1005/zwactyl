@@ -16,11 +16,11 @@
 # endif
 
 
-if SHIELD_CRADIO_DONGLE
+if SHIELD_FORSCIENCE_DONGLE
 
 # Max 16 characters in keyboard name
 config ZMK_KEYBOARD_NAME
-    default "Cradio"
+    default "FORSCIENCE"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y

@@ -18,9 +18,11 @@ include:
 
   - board: nice_nano@2.0.0
     shield: ForScience_left
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     
   - board: nice_nano@2.0.0
     shield: ForScience_right
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     
   - board: nice_nano@2.0.0
     shield: settings_reset
