@@ -14,6 +14,9 @@
 ---
 include:
   - board: nice_nano@2.0.0
+    shield: ForScience_dongle
+
+  - board: nice_nano@2.0.0
     shield: ForScience_left
     
   - board: nice_nano@2.0.0
