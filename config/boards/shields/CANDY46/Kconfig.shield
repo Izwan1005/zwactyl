@@ -1,0 +1,5 @@
+config SHIELD_CANDY46_LEFT
+    def_bool $(shields_list_contains,CANDY46_left)
+
+config SHIELD_CANDY46_RIGHT
+    def_bool $(shields_list_contains,CANDY46_right)

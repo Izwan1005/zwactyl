@@ -1,5 +1,0 @@
-config SHIELD_FORSCIENCE_LEFT
-    def_bool $(shields_list_contains,ForScience_left)
-
-config SHIELD_FORSCIENCE_RIGHT
-    def_bool $(shields_list_contains,ForScience_right)

@@ -14,10 +14,10 @@
 ---
 include:
   - board: nice_nano@2.0.0
-    shield: ForScience_left
+    shield: CANDY46_left
     
   - board: nice_nano@2.0.0
-    shield: ForScience_right
+    shield: CANDY46_right
     
   - board: nice_nano@2.0.0
     shield: settings_reset

@@ -1,21 +1,21 @@
-if SHIELD_FORSCIENCE_LEFT
+if SHIELD_CANDY46_LEFT
 
     config ZMK_KEYBOARD_NAME
-        default "ForScience-L"
+        default "CANDY46-L"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
 
 endif
 
-if SHIELD_FORSCIENCE_RIGHT
+if SHIELD_CANDY46_RIGHT
 
     config ZMK_KEYBOARD_NAME
-        default "ForScience-R"
+        default "CANDY46-R"
 
 endif
 
-if SHIELD_FORSCIENCE_LEFT || SHIELD_FORSCIENCE_RIGHT
+if SHIELD_CANDY46_LEFT || SHIELD_CANDY46_RIGHT
 
     config ZMK_SPLIT
         default y
