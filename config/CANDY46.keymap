@@ -114,15 +114,9 @@
             layers = <0>;
         };
 
-        R_thumb_date {
-            bindings = <&kp F5>;
-            key-positions = <33 25>;
-            layers = <0>;
-        };
-
         L_thumb_GUI {
             bindings = <&kp LEFT_GUI>;
-            key-positions = <24 30>;
+            key-positions = <24 41>;
             layers = <0>;
         };
 
@@ -925,11 +919,11 @@
 
         Base {
             bindings = <
-&none                 &kp W    &kp F    &kp P                 &kp G                     &kp J                     &kp L              &kp U            &kp Y              &none
-&kp Q                 &lt 3 R  &lt 4 S  &lt 5 T               &kp D                     &kp H                     &kp N              &lt 8 E          &kp I              &lt 6 SEMICOLON
-&lt 2 A               &kp X    &kp C    &kp V                 &kp B                     &kp K                     &kp M              &mt RCTRL COMMA  &mt RIGHT_ALT DOT  &kp O
-&ht_tap LEFT_SHIFT Z  &none    &none    &none                 &none                     &none                     &none              &none            &none              &mt LC(LEFT_SHIFT) SLASH
-                               &none    &ht_hold LCTRL ENTER  &layer_tap 1 BACKSPACE    &ht_tap LEFT_SHIFT SPACE  &lt 7 LC(LA(TAB))  &none
+&none                 &kp W    &kp F         &kp P                 &kp G                     &kp J                     &kp L              &kp U            &kp Y              &none
+&kp Q                 &lt 3 R  &lt 4 S       &lt 5 T               &kp D                     &kp H                     &kp N              &lt 8 E          &kp I              &lt 6 SEMICOLON
+&lt 2 A               &kp X    &kp C         &kp V                 &kp B                     &kp K                     &kp M              &mt RCTRL COMMA  &mt RIGHT_ALT DOT  &kp O
+&ht_tap LEFT_SHIFT Z  &none    &none         &none                 &none                     &kp UP_ARROW              &kp LEFT           &kp RIGHT        &kp DOWN_ARROW     &mt LC(LEFT_SHIFT) SLASH
+                               &kp LEFT_GUI  &ht_hold LCTRL ENTER  &layer_tap 1 BACKSPACE    &ht_tap LEFT_SHIFT SPACE  &lt 7 LC(LA(TAB))  &none
             >;
         };
 
