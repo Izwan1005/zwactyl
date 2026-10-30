@@ -919,21 +919,21 @@
 
         Base {
             bindings = <
-&kp Q                 &kp W    &kp E         &kp R                 &kp T                     &kp J                     &kp L                &kp U            &kp Y              &none
-&kp Q                 &lt 3 R  &lt 4 S       &lt 5 T               &kp D                     &kp H                     &kp N                &lt 8 E          &kp I              &lt 6 SEMICOLON
-&lt 2 A               &kp X    &kp C         &kp V                 &kp B                     &kp K                     &kp M                &mt RCTRL COMMA  &mt RIGHT_ALT DOT  &kp O
-&ht_tap LEFT_SHIFT Z  &none    &none         &none                 &none                     &kp UP_ARROW              &kp LEFT             &kp RIGHT        &kp DOWN_ARROW     &mt LC(LEFT_SHIFT) SLASH
-                               &kp LEFT_GUI  &ht_hold LCTRL ENTER  &layer_tap 1 BACKSPACE    &ht_tap LEFT_SHIFT SPACE  &lt (7) LC(LA(TAB))  &none
+&kp Q      &kp W      &kp E     &kp R         &kp T        &kp Y           &kp U                &kp I           &kp O            &kp P
+&kp A      &kp S      &kp D     &kp F         &kp G        &kp H           &kp J                &kp K           &kp L            &kp SEMI
+&kp Z      &kp X      &kp C     &kp V         &kp B        &kp N           &kp M                &kp COMMA       &kp DOT          &kp FSLH
+&kp LSHFT  &kp LCTRL  &kp LALT  &none         &kp LGUI     &kp LEFT_ARROW  &kp UP_ARROW         &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp DELETE
+                      &kp ESC   &lt 6 C_MENU  &kp ENTER    &kp SPACE       &lt (7) LC(LA(TAB))  &kp BSPC
             >;
         };
 
         Macros {
             bindings = <
-&none       &kp F9              &INS_CAP           &INS_TAB      &NOR_ID       &sel_line           &none         &kp INS           &mkp MB1          &none
-&caps_esc   &S7_adobe_accept    &INS_HIGHLIGHT     &INS_FIG      &IKM_PC       &kp LC(LS(LEFT))    &select_word  &AE               &INS_FONTCOLOR    &kp K_APP
-&AO         &S7_adobe_complete  &merge_cell_words  &INS_REF      &IKM_ADMIN    &kp LS(LEFT_ARROW)  &SUB_SUP      &APDL_nodeNumber  &kp LC(LG(LEFT))  &OE
-&kp LS(F3)  &none               &none              &none         &none         &none               &none         &none             &none             &kp LC(LG(RIGHT))
-                                &none              &WIN_new_txt  &trans        &non_breaking       &NDIST        &none
+&kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT    &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT
+&kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT    &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT
+&kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT    &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT
+&kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT    &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT  &kp LSHFT
+                      &kp LSHFT  &kp LSHFT  &kp LSHFT    &kp LSHFT  &kp LSHFT  &kp LSHFT
             >;
         };
 
