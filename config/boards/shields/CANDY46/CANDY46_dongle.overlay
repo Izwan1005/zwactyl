@@ -25,4 +25,8 @@
         >;
     };
 
+    chosen {
+        zmk,matrix-transform = &default_transform;
+    };
+
 };
